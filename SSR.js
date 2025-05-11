@@ -9,7 +9,7 @@ const PORT =8001;
 const {connectToMongoDB} = require("./connect.js");
 const URL = require("./models/url.js");
 connectToMongoDB("mongodb://localhost:27017/short-url");
-const {restrictToLoggedinUserOnly , , checkAuth} = require("./middlewares/auth.js");
+const {restrictToLoggedinUserOnly , checkAuth} = require("./middlewares/auth.js");
 
 app.use(express.json());
 app.use(express.urlencoded({extended :  false}));
