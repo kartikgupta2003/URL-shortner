@@ -9,7 +9,7 @@ const PORT =8001;
 const {connectToMongoDB} = require("./connect.js");
 const URL = require("./models/url.js");
 connectToMongoDB("mongodb://localhost:27017/short-url");
-const {restrictToLoggedinUserOnly} = require("./middlewares/auth.js");
+const {restrictToLoggedinUserOnly , , checkAuth} = require("./middlewares/auth.js");
 
 app.use(express.json());
 app.use(express.urlencoded({extended :  false}));
@@ -25,7 +25,7 @@ app.set("views" , path.resolve("./views"));
 // ab me apne express ko bata rha hu ki jitni bhi ejs ki files hai wo
 // particularly iss folder me padi hui hai 
 
-app.use("/" , staticRoute);
+app.use("/" , checkAuth , staticRoute);
 
 
 // Example of SSR
